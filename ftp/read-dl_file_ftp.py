@@ -18,7 +18,12 @@ def get(host, fullname):
     with open(fullname, "w") as output:
         connection.retrlines("RETR {0}".format(fullname), output.write)
 
-host = "cdsarc.u-strasbg.fr"
+print('[*] Host : ')
+host = raw_input()
 
+print('[*] Liste contenue ftp :')
 directory_list(host)
-get(host, "ls-lR.gz")
+
+print('[*] Fichier à telecharger :')
+a_dl = raw_input()
+get(host, a_dl)
