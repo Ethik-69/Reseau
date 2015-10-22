@@ -1,6 +1,5 @@
 #! /usr/bin/python
 # -*- coding:utf-8 -*-
-#http://null-byte.wonderhowto.com/how-to/sploit-make-python-port-scanner-0161074/
 from socket import *
 import sys, time, optparse
 from datetime import datetime
