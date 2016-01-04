@@ -1,10 +1,12 @@
 #! /usr/bin/python
 # -*- coding:utf-8 -*-
+'''Scanne les ports d'une machine cible'''
 from socket import *
 import sys, time, optparse
 from datetime import datetime
 
-def scan_host(host, port, r_code = 1):
+
+def scan_host(host, port, r_code=1):
     try:
         s = socket(AF_INET, SOCK_STREAM)
         code = s.connect_ex((host, port))
@@ -15,16 +17,18 @@ def scan_host(host, port, r_code = 1):
         pass
     return r_code
 
+
 def main():
     parser = optparse.OptionParser("usage %prog " + "-i <Target ip> -M <Port max - Default : 5000> -m <port min - Default : 1>")
     parser.add_option('-i', dest='host', type='string', help='Target ip')
     parser.add_option('-M', dest='max_port', type='int', help='Port max')
     parser.add_option('-m', dest='min_port', type='int', help='Port min')
-    (options, arg) = parser.parse_args()
-    if (options.host == None):
+    options, arg = parser.parse_args()
+
+    if options.host is None:
         print(parser.usage)
         exit(0)
-    elif (options.max_port == None) | (options.min_port == None):
+    elif options.max_port is None | options.min_port is None:
         host = options.host
         max_port = 5000
         min_port = 1
@@ -46,14 +50,14 @@ def main():
         try:
             response = scan_host(host, port)
             if response == 0:
-                print("[*] Port %d: Open" % (port))
+                print("[*] Port %d: Open" % port)
         except Exception as e:
             pass
 
     stop_time = datetime.now()
     total_time_duration = stop_time - start_time
-    print("\n[*] Scanning Finished At %s ..." % (time.strftime("%H:%M:%S")))
-    print("[*] Scanning Duration : %s ..." % (total_time_duration))
+    print("\n[*] Scanning Finished At %s ..." % time.strftime("%H:%M:%S"))
+    print("[*] Scanning Duration : %s ..." % total_time_duration)
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()
