@@ -1,5 +1,6 @@
-# securite-reseau
+# Multi Target Local Port Scan
 
-Port Scan -> scan les ports d'un ordinateur cible
-
-Scan Reseau -> scan le reseau et renvoi l'ip des ordinateur connecter
+requirement:
+	- threading
+	- subprocess
+	- socket
